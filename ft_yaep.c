@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_yaep.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbenoist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 12:18:47 by tbenoist          #+#    #+#             */
-/*   Updated: 2015/12/02 13:46:50 by tbenoist         ###   ########.fr       */
+/*   Created: 2015/11/25 11:05:12 by tbenoist          #+#    #+#             */
+/*   Updated: 2015/12/09 09:36:09 by tbenoist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_atoi(const char *str)
 {
-	ft_memset(s, 0, n);
+	int n;
+	int	s;
+
+	n = 0;
+	s = 1;
+	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r'
+			|| *str == '\v' || *str == '\f')
+		str++;
+	if (*str == '-' && ft_isdigit(*(str + 1)))
+	{
+		s = -1;
+		str++;
+	}
+	else if (*str == '+' && ft_isdigit(*(str + 1)))
+		str++;
+	while (ft_isdigit(*str))
+	{
+		n *= 10;
+		n += *str - '0';
+		str++;
+	}
+	return (n * s);
 }
